@@ -8,13 +8,14 @@
 			'width'			: "50", 
 			'margin'		: "5",
 			'persp'			: '80',
-			'border-radius'	: "value",
+			'border-radius'	: "10",
 			'year'			: 2014,
 			'month'			: 5,
 			'day'			: 4,
 			'show_seconds'	: true,
 			'reflections'	: true,
-			'seperator'		: "<div style='float:left' class='seperator'> : </div>"
+			'seperator'		: "<div style='float:left' class='seperator'> : </div>",
+			'font'			:'Arial'
 		}, options);
 		//calculate date components
 		// inspired by http://www.javascriptkit.com/script/script2/count2.shtml
@@ -28,8 +29,7 @@
 		var todayd=today.getDate();
 		var todayh=today.getHours();
 		var todaymin=today.getMinutes();
-		if(settings['show_seconds'] == true)
-			var todaysec=today.getSeconds();
+		var todaysec=today.getSeconds();
 		var todaystring=montharray[todaym]+" "+todayd+", "+todayy+" "+todayh+":"+todaymin+":"+todaysec;
 		futurestring=montharray[settings['month']-1]+" "+settings['day']+", "+settings['year'];
 		dd=Date.parse(futurestring)-Date.parse(todaystring);
@@ -95,17 +95,19 @@
 				$this.append(print_digits(dsec,'sec'));
 			}
 			$this.find('.digit').height(settings['height']+'px').width(settings['width']+'px').css({'font-size':settings['height']+'px',
-				'line-height':settings['height']+'px','margin-right':settings['margin'],'-webkit-perspective':settings['persp'],'-ms-perspective':settings['persp'],'-moz-perspective':settings['persp'],'perspective':settings['persp']});
+				'font-family':settings['font'],'line-height':settings['height']+'px','margin-right':settings['margin']+'px','-webkit-perspective':settings['persp']+'px','-ms-perspective':settings['persp']+'px','-moz-perspective':settings['persp']+'px','perspective':settings['persp']+'px'});
 			if(settings['reflections'] == true)
 				$this.find('.digit').addClass('reflect');
 			$this.find('.seperator').css({'margin-right':settings['margin']+'px','line-height':settings['height']+'px','font-size':settings['height']+'px'});
 			$this.find('.bottom-half').css('top',(settings['height']/2)+'px');
 			$this.find('.back-bottom').css('top',(settings['height']/2)+'px');
-			$this.find('.back, .front, .shadow').css('border-radius',settings['border_radius']+'px');
-			$this.find('.top-half').css({'border-top-left-radius':settings['border_radius']+'px',
-				'border-top-right-radius':settings['border_radius']+'px'});
-			$this.find('.back-bottom, .bottom-half').css({'border-bottom-left-radius':settings['border_radius']+'px',
-				'border-bottom-right-radius':settings['border_radius']+'px'});
+			$this.find('.back, .front, .shadow').css('border-radius',settings['border-radius']+'px');
+			$this.find('.top-half').css({'border-top-left-radius':settings['border-radius']+'px',
+				'border-top-right-radius':settings['border-radius']+'px'});
+			$this.find('.top').css({'border-top-left-radius':settings['border-radius']+'px',
+				'border-top-right-radius':settings['border-radius']+'px'});
+			$this.find('.back-bottom, .bottom-half, .shadow > .bottom').css({'border-bottom-left-radius':settings['border-radius']+'px',
+				'border-bottom-right-radius':settings['border-radius']+'px'});
 			var interval = (settings['show_seconds'] == true ? 1000 : 60000);
 
 			setInterval(function(){
