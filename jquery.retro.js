@@ -5,6 +5,7 @@
 			'cur_number'	: 1,
 			'max_number'	: "10",
 			'height'		: "80",
+			'font-size'		: "80",
 			'width'			: "50", 
 			'margin'		: "5",
 			'persp'			: '80',
@@ -36,6 +37,9 @@
 		var dday=Math.floor(dd/(60*60*1000*24)*1);
 		var dhour=Math.floor((dd%(60*60*1000*24))/(60*60*1000)*1);
 		var dmin=Math.floor(((dd%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
+		var delta = (settings['height'] - settings['font-size']) / 2;
+		if(delta < 0)
+			delta = 0;
 		var print_digits = function(x,pos){
 			var digits = x+'';
 			digits =  digits.length;
@@ -94,16 +98,17 @@
 				$this.append(settings['seperator']);
 				$this.append(print_digits(dsec,'sec'));
 			}
-			$this.find('.digit').height(settings['height']+'px').width(settings['width']+'px').css({'font-size':settings['height']+'px',
-				'font-family':settings['font'],'line-height':settings['height']+'px','margin-right':settings['margin']+'px','-webkit-perspective':settings['persp']+'px','-ms-perspective':settings['persp']+'px','-moz-perspective':settings['persp']+'px','perspective':settings['persp']+'px'});
+			$this.find('.digit').height(settings['height']+'px').width(settings['width']+'px').css({'font-size':settings['font-size']+'px',
+				'font-family':settings['font'],'line-height':settings['font-size']+'px','margin-right':settings['margin']+'px','-webkit-perspective':settings['persp']+'px','-ms-perspective':settings['persp']+'px','-moz-perspective':settings['persp']+'px','perspective':settings['persp']+'px'});
 			if(settings['reflections'] == true)
 				$this.find('.digit').addClass('reflect');
-			$this.find('.seperator').css({'margin-right':settings['margin']+'px','line-height':settings['height']+'px','font-size':settings['height']+'px'});
+			$this.find('.seperator').css({'margin-right':settings['margin']+'px','line-height':settings['font-size']+'px','font-size':settings['font-size']+'px'});
 			$this.find('.bottom-half').css('top',(settings['height']/2)+'px');
 			$this.find('.back-bottom').css('top',(settings['height']/2)+'px');
-			$this.find('.back, .front, .shadow').css('border-radius',settings['border-radius']+'px');
+			$this.find('.back, .front, .shadow').css({'border-radius':settings['border-radius']+'px'});
+			$this.find('.back, .front').css({'padding-top':delta+'px'});
 			$this.find('.top-half').css({'border-top-left-radius':settings['border-radius']+'px',
-				'border-top-right-radius':settings['border-radius']+'px'});
+				'border-top-right-radius':settings['border-radius']+'px','padding-top':delta+'px'});
 			$this.find('.top').css({'border-top-left-radius':settings['border-radius']+'px',
 				'border-top-right-radius':settings['border-radius']+'px'});
 			$this.find('.back-bottom, .bottom-half, .shadow > .bottom').css({'border-bottom-left-radius':settings['border-radius']+'px',
