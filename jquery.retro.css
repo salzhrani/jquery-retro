@@ -35,6 +35,14 @@
 		background: linear-gradient(to bottom, #4c4c4c 0%,#131313 100%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
 	}
+	.back {
+		box-shadow:
+	        0 1px 1px rgba(255,255,255,0.25),
+	        0 3px 0 -1px #333,
+	        0 3px 1px 0 rgba(255,255,255,0.25),
+	        0 6px 0 -2px #333,
+	        0 6px -1px rgba(255,255,255,0.25);
+		}
 	.front {
 		z-index:99;
 		display:none;
