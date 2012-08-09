@@ -15,6 +15,7 @@
 			'day'			: 4,
 			'show_seconds'	: true,
 			'reflections'	: true,
+			'stack'			: true,
 			'seperator'		: "<div style='float:left' class='seperator'> : </div>",
 			'font'			:'Arial'
 		}, options);
@@ -102,6 +103,8 @@
 				'font-family':settings['font'],'line-height':settings['font-size']+'px','margin-right':settings['margin']+'px','-webkit-perspective':settings['persp']+'px','-ms-perspective':settings['persp']+'px','-moz-perspective':settings['persp']+'px','perspective':settings['persp']+'px'});
 			if(settings['reflections'] == true)
 				$this.find('.digit').addClass('reflect');
+			if(settings['stack'] == true)
+				$this.find('.back').addClass('stack');
 			$this.find('.seperator').css({'margin-right':settings['margin']+'px','line-height':settings['font-size']+'px','font-size':settings['font-size']+'px'});
 			$this.find('.bottom-half').css('top',(settings['height']/2)+'px');
 			$this.find('.back-bottom').css('top',(settings['height']/2)+'px');
