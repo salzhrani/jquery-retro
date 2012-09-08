@@ -46,16 +46,30 @@
 			digits =  digits.length;
 			var rval = $();
 			if(digits < 2)
+			{
 				digits = 2;
+			}
 			for(var i = digits; i > 0 ; --i)
 			{
 				var cur_digit = Math.floor(x/Math.pow(10,i-1));
-				var digit = $('<div class="digit">').data('cur_digit',cur_digit).data('cur_pos',pos + i).html('  <div class="back">'+(cur_digit > 0 ? cur_digit -1 : max_value[pos + i])+'</div>\
+				var prev_digit;
+				if(i == 2 && x < 10) // test for single digit and pad with 0
+				{
+					cur_digit = 0;
+					prev_digit = 0;
+					console.log(cur_digit+" "+prev_digit);
+					single_digit = false;
+				}
+				else
+				{
+					prev_digit = ( cur_digit > 0 ? cur_digit -1 : max_value[pos + i]);
+				}
+				var digit = $('<div class="digit">').data('cur_digit',cur_digit).data('cur_pos',pos + i).html('  <div class="back">'+prev_digit+'</div>\
 					<div class="back-bottom">'+(cur_digit)+'</div>\
 					<div class="top-half">\
 					'+(cur_digit)+'</div>\
-					<div class="bottom-half">'+( cur_digit > 0 ? cur_digit -1 : max_value[pos + i])+'</div>\
-					<div class="front">'+( cur_digit > 0 ? cur_digit -1 : max_value[pos + i])+'</div>\
+					<div class="bottom-half">'+prev_digit+'</div>\
+					<div class="front">'+prev_digit+'</div>\
 					<div class="shadow">\
 					<div class="top"></div>\
 					<div class="bottom"></div>\
